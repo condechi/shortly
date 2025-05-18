@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form method="post" action="/create" class="mb-4">
+    <div class="input-group">
+      <input type="url" name="original_url" class="form-control" placeholder="Enter URL to shorten" required>
+      <button class="btn btn-primary" type="submit">Shorten</button>
+    </div>
+  </form>
+  <h2>Recent Links</h2>
+  <ul class="list-group">
+    {% for link in recent_links %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="/{{ link.code }}" target="_blank">{{ link.code }}</a>
+        <span class="text-truncate ms-3" style="max-width:60%">{{ link.original_url }}</span>
+        <span class="badge bg-secondary">{{ link.click_count }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
