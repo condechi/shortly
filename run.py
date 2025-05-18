@@ -1,15 +1,13 @@
 import os
 from app import create_app
 
-#changechangechangechange
+# WSGI app for Gunicorn & Cloud Run
+app = create_app()
 
-# Entry point for the application
+# Entry point for local execution (optional)
 def main():
-    app = create_app()
-
-    # Determine host, port, and debug settings
-    host = os.environ.get("FLASK_RUN_HOST", "0.0.0.0")  # bind to all interfaces for Cloud Run
-    port = int(os.environ.get("PORT", 8080))           # default to 8080 in container
+    host = os.environ.get("FLASK_RUN_HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", 8080))
     debug = os.environ.get("FLASK_DEBUG", "0").lower() in ("1", "true", "yes")
 
     print(f"Starting server on http://{host}:{port} (debug={debug})")
