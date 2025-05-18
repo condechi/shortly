@@ -1,6 +1,7 @@
 import os
 from app import create_app
 
+
 # Entry point for the application
 def main():
     app = create_app()
